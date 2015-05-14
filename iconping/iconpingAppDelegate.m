@@ -208,7 +208,7 @@ int64_t ustime(void) {
     int64_t elapsed;
     
     clicks++;
-    if ((clicks % 10) == 0) {
+    if ((clicks % 20) == 0) {
         NSLog(@"Sending ping\n");
         
         [self sendPingwithId:icmp_id andSeq: icmp_seq];
@@ -216,13 +216,16 @@ int64_t ustime(void) {
     [self receivePing];
     
     /* Update the current state accordingly */
-    elapsed = (ustime() - last_received_time)/1000; /* in milliseconds */
+    elapsed = (ustime() - last_received_time) / 1000; /* in milliseconds */
     if (elapsed > 3000) {
         state = CONN_STATE_KO;
+        [statusMenuItem setTitle:[NSString stringWithFormat:@"Down (%lld s)", elapsed / 1000]];
     } else if (last_rtt < 300) {
         state = CONN_STATE_OK;
+        [statusMenuItem setTitle:[NSString stringWithFormat:@"OK (%.1f s)", (float)last_rtt / 1000]];
     } else {
         state = CONN_STATE_SLOW;
+        [statusMenuItem setTitle:[NSString stringWithFormat:@"Slow (%.1f s)", (float)last_rtt / 1000]];
     }
     if (state != connection_state) {
         [self changeConnectionState: state];
@@ -233,13 +236,10 @@ int64_t ustime(void) {
 {
     if (state == CONN_STATE_KO) {
         [myStatusItem setImage:myStatusImageKO];
-        [statusMenuItem setTitle:@"No Connection!"];
     } else if (state == CONN_STATE_OK) {
         [myStatusItem setImage:myStatusImageOK];
-        [statusMenuItem setTitle:@"Connection OK"];
     } else if (state == CONN_STATE_SLOW) {
         [myStatusItem setImage:myStatusImageSLOW];
-        [statusMenuItem setTitle:@"Connection is slow"];
     }
     connection_state = state;
 }
