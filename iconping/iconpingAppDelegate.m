@@ -352,7 +352,7 @@ int64_t ustime(void) {
 
 - (BOOL)toggleLoginItem {
 	NSString * appPath = [[NSBundle mainBundle] bundlePath];
-    BOOL retval;
+    BOOL retval = FALSE;
 	
 	// Create a reference to the shared file list.
 	LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
@@ -364,8 +364,8 @@ int64_t ustime(void) {
 			[self disableLoginItemWithLoginItemsReference:loginItems ForPath:appPath];
             retval = NO;
         }
+        CFRelease(loginItems);
 	}
-	CFRelease(loginItems);
     return retval;
 }
 
