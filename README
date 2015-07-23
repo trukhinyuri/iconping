@@ -1,3 +1,4 @@
-This is the source code of Icon Ping, for more information please check:
 
-http://antirez.com/iconping
+This is a fork of @antirez's [Icon Ping](http://antirez.com/iconping),
+a tiny tool for OSX that displays your connection status in the menu
+bar.
