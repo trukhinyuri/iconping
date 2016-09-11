@@ -143,7 +143,7 @@
 		B6869B9213DD8DDD00F2D69B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "";
 			};
 			buildConfigurationList = B6869B9513DD8DDD00F2D69B /* Build configuration list for PBXProject "iconping" */;
@@ -235,6 +235,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -254,7 +255,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LLVM_LTO = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -287,7 +288,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LLVM_LTO = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -300,6 +301,7 @@
 				GCC_PREFIX_HEADER = "iconping/iconping-Prefix.pch";
 				INFOPLIST_FILE = "iconping/iconping-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.antirez.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
@@ -314,6 +316,7 @@
 				GCC_PREFIX_HEADER = "iconping/iconping-Prefix.pch";
 				INFOPLIST_FILE = "iconping/iconping-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.antirez.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
