@@ -185,7 +185,7 @@ int64_t ustime(void) {
                                 [self methodSignatureForSelector:@selector(timerHandler:)]];
     [invocation setTarget:self];
     [invocation setSelector:@selector(timerHandler:)];
-    [[NSRunLoop mainRunLoop] addTimer:[NSTimer timerWithTimeInterval:10.0 invocation:invocation repeats:YES] forMode:NSRunLoopCommonModes];
+    [[NSRunLoop mainRunLoop] addTimer:[NSTimer timerWithTimeInterval:0.1 invocation:invocation repeats:YES] forMode:NSRunLoopCommonModes];
 
     myMenu = [[NSMenu alloc] initWithTitle:@"Menu Title"];
     NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@"Quit Icon Ping" action:@selector(exitAction) keyEquivalent:@"q"];
