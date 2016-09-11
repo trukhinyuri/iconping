@@ -185,7 +185,7 @@ int64_t ustime(void) {
                                 [self methodSignatureForSelector:@selector(timerHandler:)]];
     [invocation setTarget:self];
     [invocation setSelector:@selector(timerHandler:)];
-    [[NSRunLoop mainRunLoop] addTimer:[NSTimer timerWithTimeInterval:0.1 invocation:invocation repeats:YES] forMode:NSRunLoopCommonModes];
+    [[NSRunLoop mainRunLoop] addTimer:[NSTimer timerWithTimeInterval:10.0 invocation:invocation repeats:YES] forMode:NSRunLoopCommonModes];
 
     myMenu = [[NSMenu alloc] initWithTitle:@"Menu Title"];
     NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@"Quit Icon Ping" action:@selector(exitAction) keyEquivalent:@"q"];
@@ -233,10 +233,10 @@ int64_t ustime(void) {
 
     /* Update the current state accordingly */
     elapsed = (ustime() - last_received_time) / 1000; /* in milliseconds */
-    if (elapsed > 3000) {
+    if (elapsed > 10000) {
         state = CONN_STATE_KO;
         [statusMenuItem setTitle:[NSString stringWithFormat:@"Down (%lld s)", elapsed / 1000]];
-    } else if (last_rtt < 300) {
+    } else if (last_rtt < 1000) {
         state = CONN_STATE_OK;
         [statusMenuItem setTitle:[NSString stringWithFormat:@"OK (%.1f s)", (float)last_rtt / 1000]];
     } else {
