@@ -3,7 +3,8 @@
 //  iconping
 //
 //  Created by Salvatore Sanfilippo on 25/07/11.
-//  Copyright 2011 Salvatore Sanfilippo. All rights reserved.
+//  Updated by Yuri Trukhin <yuri@trukhin.com> on 01/05/17.
+//  Copyright Salvatore Sanfilippo, Yuri Trukhin. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
@@ -23,8 +24,6 @@
 }
 
 - (void) changeConnectionState: (int) state;
-- (BOOL)loginItemExists;
-- (BOOL)toggleLoginItem;
 
 @property (assign) IBOutlet NSWindow *window;
 @end

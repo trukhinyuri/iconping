@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 47;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9144EF081EB725C400F472A8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9144EF071EB725C400F472A8 /* Images.xcassets */; };
+		9144EF0A1EB725CF00F472A8 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9144EF091EB725CF00F472A8 /* ServiceManagement.framework */; };
 		B6869BA013DD8DDE00F2D69B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6869B9F13DD8DDE00F2D69B /* Cocoa.framework */; };
 		B6869BAA13DD8DDE00F2D69B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B6869BA813DD8DDE00F2D69B /* InfoPlist.strings */; };
 		B6869BAC13DD8DDE00F2D69B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B6869BAB13DD8DDE00F2D69B /* main.m */; };
@@ -21,6 +23,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9144EF071EB725C400F472A8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		9144EF091EB725CF00F472A8 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
+		9144EF0B1EB725D500F472A8 /* iconping.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iconping.entitlements; sourceTree = "<group>"; };
 		B6869B9B13DD8DDE00F2D69B /* iconping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iconping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6869B9F13DD8DDE00F2D69B /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		B6869BA213DD8DDE00F2D69B /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -46,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9144EF0A1EB725CF00F472A8 /* ServiceManagement.framework in Frameworks */,
 				B6869BA013DD8DDE00F2D69B /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -75,6 +81,7 @@
 		B6869B9E13DD8DDE00F2D69B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9144EF091EB725CF00F472A8 /* ServiceManagement.framework */,
 				B6869B9F13DD8DDE00F2D69B /* Cocoa.framework */,
 				B6869BA113DD8DDE00F2D69B /* Other Frameworks */,
 			);
@@ -94,9 +101,11 @@
 		B6869BA513DD8DDE00F2D69B /* iconping */ = {
 			isa = PBXGroup;
 			children = (
+				9144EF0B1EB725D500F472A8 /* iconping.entitlements */,
 				B6869BB113DD8DDE00F2D69B /* iconpingAppDelegate.h */,
 				B6869BB213DD8DDE00F2D69B /* iconpingAppDelegate.m */,
 				B6869BB413DD8DDE00F2D69B /* MainMenu.xib */,
+				9144EF071EB725C400F472A8 /* Images.xcassets */,
 				B6869BA613DD8DDE00F2D69B /* Supporting Files */,
 			);
 			path = iconping;
@@ -143,11 +152,21 @@
 		B6869B9213DD8DDD00F2D69B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "";
+				TargetAttributes = {
+					B6869B9A13DD8DDE00F2D69B = {
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
+					};
+				};
 			};
 			buildConfigurationList = B6869B9513DD8DDD00F2D69B /* Build configuration list for PBXProject "iconping" */;
-			compatibilityVersion = "Xcode 6.3";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -168,6 +187,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9144EF081EB725C400F472A8 /* Images.xcassets in Resources */,
 				B6869BAA13DD8DDE00F2D69B /* InfoPlist.strings in Resources */,
 				B6869BB013DD8DDE00F2D69B /* Credits.rtf in Resources */,
 				B6869BB613DD8DDE00F2D69B /* MainMenu.xib in Resources */,
@@ -229,7 +249,9 @@
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
@@ -255,7 +277,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LLVM_LTO = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -269,7 +291,9 @@
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
@@ -288,7 +312,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LLVM_LTO = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -296,13 +320,18 @@
 		B6869BBA13DD8DDE00F2D69B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = iconping/iconping.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = HBZB74TSYE;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iconping/iconping-Prefix.pch";
 				INFOPLIST_FILE = "iconping/iconping-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.antirez.${PRODUCT_NAME:rfc1034identifier}";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = com.trukhin.iconping;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
@@ -311,13 +340,18 @@
 		B6869BBB13DD8DDE00F2D69B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = iconping/iconping.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = HBZB74TSYE;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iconping/iconping-Prefix.pch";
 				INFOPLIST_FILE = "iconping/iconping-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.antirez.${PRODUCT_NAME:rfc1034identifier}";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = com.trukhin.iconping;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};

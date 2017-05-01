@@ -3,7 +3,8 @@
 //  iconping
 //
 //  Created by Salvatore Sanfilippo on 25/07/11.
-//  Copyright Salvatore Sanfilippo. All rights reserved.
+//  Updated by Yuri Trukhin <yuri@trukhin.com> on 01/05/17.
+//  Copyright Salvatore Sanfilippo, Yuri Trukhin. All rights reserved.
 //
 
 #import "iconpingAppDelegate.h"
@@ -194,12 +195,7 @@ int64_t ustime(void) {
     statusMenuItem = [[NSMenuItem alloc] initWithTitle:@"..." action:nil keyEquivalent:@""];
     [statusMenuItem setEnabled:NO];
 
-    openAtStartupMenuItem = [[NSMenuItem alloc] initWithTitle:@"Open at startup" action:@selector(toggleStartupAction) keyEquivalent:@""];
-    [openAtStartupMenuItem setEnabled:YES];
-    if ([self loginItemExists]) [openAtStartupMenuItem setState:NSOnState];
-
     [myMenu addItem: statusMenuItem];
-    [myMenu addItem: openAtStartupMenuItem];
     [myMenu addItem: menuItem];
 
     myStatusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
@@ -262,128 +258,6 @@ int64_t ustime(void) {
 
 - (void) exitAction {
     exit(0);
-}
-
-- (void) toggleStartupAction {
-    if ([self toggleLoginItem]) {
-        [openAtStartupMenuItem setState:NSOnState];
-    } else {
-        [openAtStartupMenuItem setState:NSOffState];
-    }
-}
-
-/*
-
- The MIT License
-
- Copyright (c) 2010 Justin Williams, Second Gear
- Copyright (c) 2010 Salvatore Sanfilippo, antirez@gmail.com
-
- The following code was adapted by Salvatore Sanfilippo for iconping needs.
-
- Permission is hereby granted, free of charge, to any person obtaining a copy
- of this software and associated documentation files (the "Software"), to deal
- in the Software without restriction, including without limitation the rights
- to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- copies of the Software, and to permit persons to whom the Software is
- furnished to do so, subject to the following conditions:
-
- The above copyright notice and this permission notice shall be included in
- all copies or substantial portions of the Software.
-
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- THE SOFTWARE.
-
- */
-
-
-- (void)enableLoginItemWithLoginItemsReference:(LSSharedFileListRef )theLoginItemsRefs ForPath:(NSString *)appPath {
-        // We call LSSharedFileListInsertItemURL to insert the item at the bottom of Login Items list.
-        CFURLRef url = (CFURLRef)[NSURL fileURLWithPath:appPath];
-        LSSharedFileListItemRef item = LSSharedFileListInsertItemURL(theLoginItemsRefs, kLSSharedFileListItemLast, NULL, NULL, url, NULL, NULL);
-        if (item)
-                CFRelease(item);
-}
-
-- (void)disableLoginItemWithLoginItemsReference:(LSSharedFileListRef )theLoginItemsRefs ForPath:(NSString *)appPath {
-        UInt32 seedValue;
-        CFURLRef thePath;
-        // We're going to grab the contents of the shared file list (LSSharedFileListItemRef objects)
-        // and pop it in an array so we can iterate through it to find our item.
-        CFArrayRef loginItemsArray = LSSharedFileListCopySnapshot(theLoginItemsRefs, &seedValue);
-        for (id item in (NSArray *)loginItemsArray) {
-                LSSharedFileListItemRef itemRef = (LSSharedFileListItemRef)item;
-                if (LSSharedFileListItemResolve(itemRef, 0, (CFURLRef*) &thePath, NULL) == noErr) {
-                        if ([[(NSURL *)thePath path] hasPrefix:appPath]) {
-                                LSSharedFileListItemRemove(theLoginItemsRefs, itemRef); // Deleting the item
-                        }
-                        CFRelease(thePath);
-                }
-        }
-        CFRelease(loginItemsArray);
-}
-
-- (BOOL)loginItemExistsWithLoginItemReference:(LSSharedFileListRef)theLoginItemsRefs ForPath:(NSString *)appPath {
-        BOOL found = NO;
-        UInt32 seedValue;
-        CFURLRef thePath;
-
-        // We're going to grab the contents of the shared file list (LSSharedFileListItemRef objects)
-        // and pop it in an array so we can iterate through it to find our item.
-        CFArrayRef loginItemsArray = LSSharedFileListCopySnapshot(theLoginItemsRefs, &seedValue);
-        for (id item in (NSArray *)loginItemsArray) {
-                LSSharedFileListItemRef itemRef = (LSSharedFileListItemRef)item;
-                if (LSSharedFileListItemResolve(itemRef, 0, (CFURLRef*) &thePath, NULL) == noErr) {
-                        if ([[(NSURL *)thePath path] hasPrefix:appPath]) {
-                                found = YES;
-                CFRelease(thePath);
-                                break;
-                        } else {
-                CFRelease(thePath);
-            }
-                }
-        }
-        CFRelease(loginItemsArray);
-
-        return found;
-}
-
-- (BOOL)loginItemExists {
-        // This will retrieve the path for the application
-        // For example, /Applications/test.app
-        NSString * appPath = [[NSBundle mainBundle] bundlePath];
-    BOOL retval = NO;
-
-        LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
-        if ([self loginItemExistsWithLoginItemReference:loginItems ForPath:appPath]) {
-                retval = YES;
-        }
-        CFRelease(loginItems);
-    return retval;
-}
-
-- (BOOL)toggleLoginItem {
-        NSString * appPath = [[NSBundle mainBundle] bundlePath];
-    BOOL retval = FALSE;
-
-        // Create a reference to the shared file list.
-        LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
-        if (loginItems) {
-                if (![self loginItemExistsWithLoginItemReference:loginItems ForPath:appPath]) {
-                        [self enableLoginItemWithLoginItemsReference:loginItems ForPath:appPath];
-            retval = YES;
-                } else {
-                        [self disableLoginItemWithLoginItemsReference:loginItems ForPath:appPath];
-            retval = NO;
-        }
-        CFRelease(loginItems);
-        }
-    return retval;
 }
 
 @end
