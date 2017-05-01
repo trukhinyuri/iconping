@@ -229,10 +229,10 @@ int64_t ustime(void) {
 
     /* Update the current state accordingly */
     elapsed = (ustime() - last_received_time) / 1000; /* in milliseconds */
-    if (elapsed > 10000) {
+    if (elapsed > 1000) {
         state = CONN_STATE_KO;
         [statusMenuItem setTitle:[NSString stringWithFormat:@"Down (%lld s)", elapsed / 1000]];
-    } else if (last_rtt < 1000) {
+    } else if (last_rtt < 250) {
         state = CONN_STATE_OK;
         [statusMenuItem setTitle:[NSString stringWithFormat:@"OK (%.1f s)", (float)last_rtt / 1000]];
     } else {
