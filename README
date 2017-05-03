@@ -10,4 +10,4 @@ Changes:
 – Removed deprecated code for Autostart (add app to login item for that)
 – Moving to XCode 8 project
 – Set build target to 10.12
-– Publishing as free app to Mac App Store
+– Publishing to Mac App Store
