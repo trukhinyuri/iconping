@@ -172,7 +172,7 @@ int64_t ustime(void) {
     if (reply->sentTime > last_received_time) {
         last_rtt = (int)(ustime()-reply->sentTime)/1000;
         last_received_time = reply->sentTime;
-        [myStatusItem setToolTip:[NSString stringWithFormat:@"rtt < %.1f seconds", (float)last_rtt/1000]];
+        [myStatusItem setToolTip:[NSString stringWithFormat:@"rtt < %.1f ms", (float)last_rtt]];
     }
 }
 
@@ -231,13 +231,13 @@ int64_t ustime(void) {
     elapsed = (ustime() - last_received_time) / 1000; /* in milliseconds */
     if (elapsed > 3000) {
         state = CONN_STATE_KO;
-        [statusMenuItem setTitle:[NSString stringWithFormat:@"Down (%lld s)", elapsed / 1000]];
-    } else if (last_rtt < 250) {
+        [statusMenuItem setTitle:[NSString stringWithFormat:@"Down (%lld ms)", elapsed]];
+    } else if (last_rtt < 300) {
         state = CONN_STATE_OK;
-        [statusMenuItem setTitle:[NSString stringWithFormat:@"OK (%.1f s)", (float)last_rtt / 1000]];
+        [statusMenuItem setTitle:[NSString stringWithFormat:@"OK (%.1f ms)", (float)last_rtt]];
     } else {
         state = CONN_STATE_SLOW;
-        [statusMenuItem setTitle:[NSString stringWithFormat:@"Slow (%.1f s)", (float)last_rtt / 1000]];
+        [statusMenuItem setTitle:[NSString stringWithFormat:@"Slow (%.1f ms)", (float)last_rtt]];
     }
     if (state != connection_state) {
         [self changeConnectionState: state];
