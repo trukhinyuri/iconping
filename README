@@ -18,6 +18,3 @@ Changes:
 – Moving to XCode 8 project
 – Set build target to 10.12
 – Publishing to Mac App Store
-
-This is a fork of @antirez's [Icon Ping](http://antirez.com/iconping).
-bar.
