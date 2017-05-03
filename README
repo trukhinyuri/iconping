@@ -1,9 +1,11 @@
 
 This is a fork of @antirez's [Icon Ping](http://antirez.com/iconping),
-a tiny tool for OSX that displays your connection status in the menu
+a tiny tool for macOS that displays your connection status in the menu
 bar.
 Changes:
 – Updated App Icon
+– Updated Graphics
+– Updated Business Logic
 – App Sandbox Enabled
 – Removed deprecated code for Autostart (add app to login item for that)
 – Moving to XCode 8 project
