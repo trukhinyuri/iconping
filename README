@@ -1,7 +1,14 @@
+Small macOS menubar application that continuously pings the google-public-dns-a.google.com address checking if the connection is working, and changing the menubar icon accordingly.
 
-This is a fork of @antirez's [Icon Ping](http://antirez.com/iconping),
-a tiny tool for macOS that displays your connection status in the menu
-bar.
+The world icon will change color accordingly to the state of the connection:
+– Grey if we receive pong packets back from google-public-dns-a.google.com. Connection OK.
+– Yellow if we receive pong packets, but with a delay that is greater than 300 milliseconds. Connection Slow.
+– Red if we don't receive pong packets for three seconds or more. Connection not working.
+
+The application almost has no user interface at all, if not for a tiny menu used to quit the application.
+
+Set it to automatically restart at the next reboot: Click Apple logo in menu bar -> System preferences -> Users & Groups -> Login Items -> + and add this applications to autostart.
+
 Changes:
 – Updated App Icon
 – Updated Graphics
@@ -11,3 +18,6 @@ Changes:
 – Moving to XCode 8 project
 – Set build target to 10.12
 – Publishing to Mac App Store
+
+This is a fork of @antirez's [Icon Ping](http://antirez.com/iconping).
+bar.
