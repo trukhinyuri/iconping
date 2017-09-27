@@ -228,10 +228,13 @@ int64_t ustime(void) {
     [self receivePing];
 
     /* Update the current state accordingly */
-    elapsed = (ustime() - last_received_time) / 1000; /* in milliseconds */
-    if (elapsed > 3000) {
+    elapsed = (ustime() - last_received_time) / 1000000; /* in milliseconds */
+    if (elapsed > 1000000000) {
         state = CONN_STATE_KO;
-        [statusMenuItem setTitle:[NSString stringWithFormat:@"Down (%lld ms)", elapsed]];
+        [statusMenuItem setTitle:[NSString stringWithFormat:@"Down", elapsed]];
+    } else if (elapsed > 3) {
+        state = CONN_STATE_KO;
+        [statusMenuItem setTitle:[NSString stringWithFormat:@"Down (%lld s)", elapsed]];
     } else if (last_rtt < 300) {
         state = CONN_STATE_OK;
         [statusMenuItem setTitle:[NSString stringWithFormat:@"OK (%.1f ms)", (float)last_rtt]];
